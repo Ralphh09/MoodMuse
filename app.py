@@ -16,14 +16,14 @@ MOOD_THEMES = {
         "color"  : "#FFD700",
         "bg"     : "#FFF9E6",
         "accent" : "#FF8C00",
-        "genre"  : "pop"          # upbeat, energetic
+        "genre"  : "afrobeat"          # upbeat, energetic
     },
     "Sad": {
         "emoji"  : "😢",
         "color"  : "#5B9BD5",
         "bg"     : "#EEF4FB",
         "accent" : "#2E6DA4",
-        "genre"  : "acoustic"     # emotional, raw
+        "genre"  : "soul"     # emotional, raw
     },
     "Calm": {
         "emoji"  : "😌",
@@ -225,7 +225,7 @@ def get_spotify():
 
 def search_track(sp, query):
     try:
-        results = sp.search(q=query, type="track", limit=1)
+        results = sp.search(q=query, type="track", limit=10)
         tracks  = results["tracks"]
         items   = tracks["items"]
         if items:
@@ -247,11 +247,11 @@ def get_spotify_recommendations(sp, mood, num_songs=5):
 
     # Mood to search keywords mapping
     mood_keywords = {
-        "Happy"   : ["happy upbeat pop", "feel good pop", "upbeat dance pop"],
-        "Sad"     : ["sad acoustic", "emotional ballad", "heartbreak acoustic"],
-        "Calm"    : ["calm ambient relaxing", "peaceful piano", "soft ambient"],
-        "Stressed": ["relaxing piano stress relief", "calming music", "peaceful instrumental"],
-        "Angry"   : ["calming classical", "peaceful orchestra", "soothing classical"],
+        "Happy"   : ["afrobeat", "feel good pop", "upbeat dance pop","tekno"],
+        "Sad"     : ["sad acoustic", "emotional ballad","r-n-b", "heartbreak acoustic"],
+        "Calm"    : ["calm ambient relaxing","jazz", "peaceful piano", "soft ambient"],
+        "Stressed": ["relaxing piano stress relief","jazz", "calming music", "peaceful instrumental"],
+        "Angry"   : ["calming classical", "peaceful orchestra","hip-hop" ,"gospel", "soothing classical"],
     }
 
     keywords = mood_keywords.get(mood, ["pop music"])
