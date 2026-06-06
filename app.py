@@ -247,7 +247,7 @@ def get_spotify_recommendations(sp, mood, num_songs=5):
 
     # Mood to search keywords mapping
     mood_keywords = {
-        "Happy"   : ["afrobeat", "feel good pop", "upbeat dance pop","tekno"],
+        "Happy"   : ["afrobeat", "feel good pop", "upbeat dance pop","tekno", "k-pop"],
         "Sad"     : ["sad acoustic", "emotional ballad","r-n-b", "heartbreak acoustic"],
         "Calm"    : ["calm ambient relaxing","jazz", "peaceful piano", "soft ambient"],
         "Stressed": ["relaxing piano stress relief","jazz", "calming music", "peaceful instrumental"],
@@ -630,7 +630,7 @@ elif st.session_state.page == "custom":
         mood_genre = st.selectbox("Spotify Genre", [
             "pop", "rock", "hip-hop", "jazz", "classical",
             "electronic", "r-n-b", "country", "latin", "indie",
-            "ambient", "chill", "sad", "happy", "party","grime","kpop",
+            "ambient", "chill", "sad", "happy", "party","grime","k-pop",
             "afrobeats", "gospel", "reggae","blues", "funk",  "metal",
             "punk", "folk","disco"
         ])
