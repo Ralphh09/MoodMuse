@@ -228,17 +228,22 @@ def search_track(sp, query):
         results = sp.search(q=query, type="track", limit = 10)
         #tracks  = results["tracks"]
         items   = results["tracks"]["items"]
-        tracks =[]
-        if items:
-            track = items[0]
-            return {
+        
+        found_tracks =[]
+        
+        for track in items:
+            found_tracks.append({
                 "name"        : track["name"],
                 "artist"      : ", ".join(a["name"] for a in track["artists"]),
                 "album"       : track["album"]["name"],
                 "image"       : track["album"]["images"][1]["url"] if len(track["album"]["images"]) > 1 else None,
                 "preview_url" : track.get("preview_url", None),
                 "external_url": track["external_urls"]["spotify"],
-            }
+            })
+
+       return found_tracks
+
+     
     except Exception as e:
         st.warning(f"Search failed for '{query}': {e}")
     return None
