@@ -630,7 +630,9 @@ elif st.session_state.page == "custom":
         mood_genre = st.selectbox("Spotify Genre", [
             "pop", "rock", "hip-hop", "jazz", "classical",
             "electronic", "r-n-b", "country", "latin", "indie",
-            "ambient", "chill", "sad", "happy", "party"
+            "ambient", "chill", "sad", "happy", "party","grime","kpop",
+            "afrobeats", "gospel", "reggae","blues", "funk",  "metal",
+            "punk", "folk","disco"
         ])
         submitted = st.form_submit_button("➕ Add Mood")
 
