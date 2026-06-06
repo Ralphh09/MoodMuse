@@ -226,8 +226,9 @@ def get_spotify():
 def search_track(sp, query):
     try:
         results = sp.search(q=query, type="track", limit = 10)
-        tracks  = results["tracks"]
-        items   = tracks["items"]
+        #tracks  = results["tracks"]
+        items   = results["tracks"]["items"]
+        tracks =[]
         if items:
             track = items[0]
             return {
@@ -606,7 +607,7 @@ elif st.session_state.page == "search":
                 with st.spinner("Searching Spotify..."):
                     tracks = search_track(sp, query)
                 if tracks:
-                    display_tracks([tracks])
+                    display_tracks(tracks)
                 else:
                     st.warning("⚠️ Song not found — try a different search!")
             else:
