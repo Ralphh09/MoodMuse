@@ -6,10 +6,6 @@ from datetime import datetime
 import json
 import os
 import pandas as pd
-from dotenv import load_dotenv
-
-# Load environment variables
-load_dotenv()
 
 st.set_page_config(page_title="MoodMuse", page_icon="🎶", layout="centered")
 
@@ -212,11 +208,15 @@ def apply_mood_theme(mood):
 # ── Spotify ───────────────────────────────────────────────────────────────────
 @st.cache_resource
 def get_spotify():
-    client_id = os.getenv("SPOTIFY_CLIENT_ID")
-    client_secret = os.getenv("SPOTIFY_CLIENT_SECRET")
+    try:
+        client_id = st.secrets["SPOTIFY_CLIENT_ID"]
+        client_secret = st.secrets["SPOTIFY_CLIENT_SECRET"]
+    except:
+        client_id = os.getenv("SPOTIFY_CLIENT_ID")
+        client_secret = os.getenv("SPOTIFY_CLIENT_SECRET")
     
     if not client_id or not client_secret:
-        raise ValueError("Spotify credentials not found. Please set SPOTIFY_CLIENT_ID and SPOTIFY_CLIENT_SECRET environment variables.")
+        raise ValueError("Spotify credentials not found. Please add them to Streamlit Secrets.")
     
     return spotipy.Spotify(auth_manager=SpotifyClientCredentials(
         client_id=client_id,
